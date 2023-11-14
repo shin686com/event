@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+  <script th:inline="javascript">
+      var msg = [[${msg}]];
+      alert(msg);
+      location.replace([[${url}]]);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

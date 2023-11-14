@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btn-kakaopay").on("click", function () { // 버튼 클릭했을때, 발생되는 이벤트 생성함(onclick 이벤트와 동일함)
+                kakaopay();
+            })
+
+        })
+        function kakaopay() {
+
+            $.ajax({
+                url: "/payment/kakaopay",
+                dataType: "json",
+                success: function (json) {
+                    if (json.status === 500) {
+                        alert("카카오페이결제를 실패하였습니다.")
+                    } else {
+                        // alert(resp.tid); //결제 고유 번호
+                        var box = json.next_redirect_pc_url;
+                        //window.open(box); // 새창 열기
+                        location.href = box;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<button id="btn-kakaopay" class="btn btn-primary">카카오페이</button>
+</body>
+</html>
